@@ -5,7 +5,6 @@ data = pandas.read_csv("36_states.csv")
 state_name = data.state.to_list()
 score = 0
 guess = []
-missing = []
 screen = Screen()
 screen.title("Nigeria State Game")
 screen.setup(width=600, height=500)
@@ -35,8 +34,6 @@ while len(guess)<len(state_name):
     else:
         break
 print(len(state_name))
-for state in state_name:
-    if state not in guess:
-        missing.append(state)
+missing = [state for state in state_name if state not in guess]
 print(len(missing))
 pandas.DataFrame(missing).to_csv("missing_state.csv")
